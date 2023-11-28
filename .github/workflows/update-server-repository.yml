@@ -1,8 +1,8 @@
 name: Update LMS Plugin Repository
 
 on:
-  schedule:
-    - cron: "06 */6 * * *"
+  # schedule:
+  #   - cron: "06 */6 * * *"
   workflow_dispatch:
 
 env:
@@ -42,7 +42,12 @@ jobs:
               delete repos[k];
             });
 
-            await fs.writeFile('servers.json', JSON.stringify(repos));
+            const old = JSON.parse(await fs.readFile('servers.json'));
+
+            if (!deepEqual(old, repos)) {
+              console.log("need to commit?!?");
+              await fs.writeFile('servers.json', JSON.stringify(repos, null, 4));
+            }
 
             async function getRepo(url) {
               const response = await fetch(url);
@@ -64,20 +69,51 @@ jobs:
               return { ...json.servers, version };
             }
 
+            function deepEqual(object1, object2) {
+              const keys1 = Object.keys(object1);
+              const keys2 = Object.keys(object2);
+
+              if (keys1.length !== keys2.length) {
+                return false;
+              }
+
+              for (const key of keys1) {
+                const val1 = object1[key];
+                const val2 = object2[key];
+                const areObjects = isObject(val1) && isObject(val2);
+                if (
+                  areObjects && !deepEqual(val1, val2) ||
+                  !areObjects && val1 !== val2
+                ) {
+                  return false;
+                }
+              }
+
+              return true;
+            }
+
+            function isObject(object) {
+              return object != null && typeof object === 'object';
+            }
+
       - name: Commit Changes (if needed)
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo No changes to commit
-          else
+          elif "${{ secrets.GITHUB_TOKEN }}" ne ""; then
             git config user.name "LMS Server Repository Updater"
             git config user.email "noreply-server-updater@herger.net"
             git add latest.xml stable.xml dev.xml servers.json
             git commit -a -m "Update Server Repository ${{ github.event.inputs.version }}"
             git push
+          else
+            # git diff
+            git status
           fi
 
       - name: Cleanup old runs
         uses: actions/github-script@v7
+        if: secrets.GITHUB_TOKEN != ''
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
