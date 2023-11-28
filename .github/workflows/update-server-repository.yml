@@ -16,18 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Push Changes (if needed and reasonable)
-      #   if: steps.merge.outputs.LMS_REPO_DIFF_VALUE < env.MAX_REMOVAL_DIFF
-      #   run: |
-      #     if [ -z "$(git status --porcelain)" ]; then
-      #       echo No changes to commit
-      #     else
-      #       git config user.name "LMS Extensions Repository Updater"
-      #       git config user.email "noreply-server-updater@logitech.com"
-      #       git commit -a -m "Update Extensions Repository ${{ github.event.inputs.version }}"
-      #       git push
-      #     fi
-
       - name: Install dependencies
         run: npm install fast-xml-parser node-fetch@2
 
@@ -67,7 +55,6 @@ jobs:
 
               const urlObj = new URL(url);
               await fs.writeFile(path.basename(urlObj.pathname), body);
-              console.log(path.basename(urlObj.pathname));
 
               const json = parser.parse(body);
               let version = 999999;
@@ -77,7 +64,20 @@ jobs:
               return { ...json.servers, version };
             }
 
-      - run: git status
+      - name: Commit Changes (if needed)
+        run: |
+          git status
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo No changes to commit
+          else
+            git config user.name "LMS Server Repository Updater"
+            git config user.email "noreply-server-updater@herger.net"
+            git add latest.xml stable.xml dev.xml servers.json
+            git commit -a -m "Update Server Repository ${{ github.event.inputs.version }}"
+            # git push
+            git status
+          fi
 
       # - name: Cleanup old runs
       #   uses: actions/github-script@v7
