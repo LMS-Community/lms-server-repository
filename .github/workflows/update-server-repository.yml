@@ -1,0 +1,107 @@
+name: Update LMS Plugin Repository
+
+on:
+  schedule:
+    - cron: "06 */6 * * *"
+  workflow_dispatch:
+
+env:
+  MAX_REMOVAL_DIFF: 3
+
+jobs:
+  merge:
+    name: Update plugin repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # - name: Push Changes (if needed and reasonable)
+      #   if: steps.merge.outputs.LMS_REPO_DIFF_VALUE < env.MAX_REMOVAL_DIFF
+      #   run: |
+      #     if [ -z "$(git status --porcelain)" ]; then
+      #       echo No changes to commit
+      #     else
+      #       git config user.name "LMS Extensions Repository Updater"
+      #       git config user.email "noreply-server-updater@logitech.com"
+      #       git commit -a -m "Update Extensions Repository ${{ github.event.inputs.version }}"
+      #       git push
+      #     fi
+
+      - name: Install dependencies
+        run: npm install fast-xml-parser node-fetch@2
+
+      - name: Update Repositories
+        uses: actions/github-script@v7
+        with:
+          github-token: abc
+          script: |
+            const fs = require('fs/promises');
+            const path = require('path');
+            const { XMLParser } = require('fast-xml-parser');
+            const fetch = require('node-fetch');
+
+            const repos = {
+              latest: await getRepo('https://downloads.slimdevices.com/releases/latest.xml'),
+              stable: await getRepo('https://downloads.slimdevices.com/releases/nightly/stable.xml'),
+              dev: await getRepo('https://downloads.slimdevices.com/releases/nightly/dev.xml')
+            };
+
+            delete repos.latest.version;
+            ['dev', 'stable'].forEach(k => {
+              repos[repos[k].version] = repos[k];
+              delete repos[k].version;
+              delete repos[k];
+            });
+
+            await fs.writeFile('servers.json', JSON.stringify(repos));
+
+            async function getRepo(url) {
+              const response = await fetch(url);
+              const body = await response.text();
+
+              const parser = new XMLParser({
+                ignoreAttributes : false,
+                attributeNamePrefix : ''
+              });
+
+              const urlObj = new URL(url);
+              await fs.writeFile(path.basename(urlObj.pathname), body);
+              console.log(path.basename(urlObj.pathname));
+
+              const json = parser.parse(body);
+              let version = 999999;
+
+              version = (Object.values(json.servers).find(v => v.version )).version;
+
+              return { ...json.servers, version };
+            }
+
+      - run: git status
+
+      # - name: Cleanup old runs
+      #   uses: actions/github-script@v7
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       const days_to_expiration = 30;
+      #       const thresholdTimestamp = Date.now() - days_to_expiration * 86400000;
+
+      #       const response = await github.rest.actions.listWorkflowRuns({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         page: 3,
+      #         per_page: 100,
+      #         workflow_id: 'update-server-repository.yml'
+      #       });
+
+      #       for (const run of response.data.workflow_runs) {
+      #         if (Date.parse(run.created_at) < thresholdTimestamp) {
+      #           console.log(`Run id ${run.id} is older than ${days_to_expiration} days. Deleting...`);
+      #           await github.rest.actions.deleteWorkflowRun({
+      #             owner: context.repo.owner,
+      #             repo: context.repo.repo,
+      #             run_id: run.id
+      #           });
+      #         }
+      #       }
