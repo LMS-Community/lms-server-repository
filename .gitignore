@@ -1,0 +1,4 @@
+# we only install modules on the fly - don't store these
+package.json
+package-lock.json
+node_modules
