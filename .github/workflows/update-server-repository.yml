@@ -22,7 +22,7 @@ jobs:
       - name: Update Repositories
         uses: actions/github-script@v7
         with:
-          github-token: abc
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs/promises');
             const path = require('path');
@@ -66,8 +66,6 @@ jobs:
 
       - name: Commit Changes (if needed)
         run: |
-          git status
-
           if [ -z "$(git status --porcelain)" ]; then
             echo No changes to commit
           else
@@ -75,33 +73,32 @@ jobs:
             git config user.email "noreply-server-updater@herger.net"
             git add latest.xml stable.xml dev.xml servers.json
             git commit -a -m "Update Server Repository ${{ github.event.inputs.version }}"
-            # git push
-            git status
+            git push
           fi
 
-      # - name: Cleanup old runs
-      #   uses: actions/github-script@v7
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     script: |
-      #       const days_to_expiration = 30;
-      #       const thresholdTimestamp = Date.now() - days_to_expiration * 86400000;
+      - name: Cleanup old runs
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const days_to_expiration = 30;
+            const thresholdTimestamp = Date.now() - days_to_expiration * 86400000;
 
-      #       const response = await github.rest.actions.listWorkflowRuns({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         page: 3,
-      #         per_page: 100,
-      #         workflow_id: 'update-server-repository.yml'
-      #       });
+            const response = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              page: 3,
+              per_page: 100,
+              workflow_id: 'update-server-repository.yml'
+            });
 
-      #       for (const run of response.data.workflow_runs) {
-      #         if (Date.parse(run.created_at) < thresholdTimestamp) {
-      #           console.log(`Run id ${run.id} is older than ${days_to_expiration} days. Deleting...`);
-      #           await github.rest.actions.deleteWorkflowRun({
-      #             owner: context.repo.owner,
-      #             repo: context.repo.repo,
-      #             run_id: run.id
-      #           });
-      #         }
-      #       }
+            for (const run of response.data.workflow_runs) {
+              if (Date.parse(run.created_at) < thresholdTimestamp) {
+                console.log(`Run id ${run.id} is older than ${days_to_expiration} days. Deleting...`);
+                await github.rest.actions.deleteWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id
+                });
+              }
+            }
