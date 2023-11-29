@@ -1,8 +1,8 @@
 name: Update LMS Plugin Repository
 
 on:
-  # schedule:
-  #   - cron: "06 */6 * * *"
+  schedule:
+    - cron: "26 */8 * * *"
   workflow_dispatch:
 
 env:
