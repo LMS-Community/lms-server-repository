@@ -93,19 +93,23 @@ jobs:
             }
 
       - name: Commit Changes (if needed)
+        if: ${{ env.DEBUG == '' }}
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo No changes to commit
-          elif "${{ secrets.GITHUB_TOKEN }}" ne ""; then
+          else
             git config user.name "LMS Server Repository Updater"
             git config user.email "noreply-server-updater@herger.net"
             git add latest.xml stable.xml dev.xml servers.json
             git commit -a -m "Update Server Repository ${{ github.event.inputs.version }}"
             git push
-          else
-            git --no-pager diff
-            git status
           fi
+
+      - name: Log Changes
+        if: ${{ env.DEBUG }}
+        run: |
+          git --no-pager diff
+          git status
 
       - name: Cleanup old runs
         uses: actions/github-script@v7
