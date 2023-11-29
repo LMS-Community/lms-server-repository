@@ -101,7 +101,7 @@ jobs:
             git commit -a -m "Update Server Repository ${{ github.event.inputs.version }}"
             git push
           else
-            # git diff
+            git --no-pager diff
             git status
           fi
 
