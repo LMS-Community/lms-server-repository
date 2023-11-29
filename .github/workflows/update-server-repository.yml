@@ -5,9 +5,6 @@ on:
   #   - cron: "06 */6 * * *"
   workflow_dispatch:
 
-env:
-  MAX_REMOVAL_DIFF: 3
-
 jobs:
   merge:
     name: Update plugin repository
@@ -22,7 +19,6 @@ jobs:
       - name: Update Repositories
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs/promises');
             const path = require('path');
@@ -62,9 +58,7 @@ jobs:
               await fs.writeFile(path.basename(urlObj.pathname), body);
 
               const json = parser.parse(body);
-              let version = 999999;
-
-              version = (Object.values(json.servers).find(v => v.version )).version;
+              const version = (Object.values(json.servers).find(v => v.version )).version;
 
               return { ...json.servers, version };
             }
@@ -113,9 +107,8 @@ jobs:
 
       - name: Cleanup old runs
         uses: actions/github-script@v7
-        # if: '${{ secrets.GITHUB_TOKEN }}' != ''
+        if: ${{ secrets.GITHUB_TOKEN }} != ''
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const days_to_expiration = 30;
             const thresholdTimestamp = Date.now() - days_to_expiration * 86400000;
