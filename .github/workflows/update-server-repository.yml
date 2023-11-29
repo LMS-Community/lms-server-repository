@@ -5,6 +5,10 @@ on:
   #   - cron: "06 */6 * * *"
   workflow_dispatch:
 
+env:
+  STABLE_BRANCH: "8.3"
+  DEV_BRANCH: "8.4"
+
 jobs:
   merge:
     name: Update plugin repository
@@ -21,14 +25,18 @@ jobs:
         with:
           script: |
             const fs = require('fs/promises');
-            const path = require('path');
             const { XMLParser } = require('fast-xml-parser');
             const fetch = require('node-fetch');
 
+            const parser = new XMLParser({
+              ignoreAttributes : false,
+              attributeNamePrefix : ''
+            });
+
             const repos = {
-              latest: await getRepo('https://downloads.slimdevices.com/releases/latest.xml'),
-              stable: await getRepo('https://downloads.slimdevices.com/releases/nightly/stable.xml'),
-              dev: await getRepo('https://downloads.slimdevices.com/releases/nightly/dev.xml')
+              latest: (parser.parse(await fs.readFile('latest.xml'))).servers,
+              stable: await getRepo('stable', process.env.STABLE_BRANCH),
+              dev: await getRepo('dev', process.env.DEV_BRANCH)
             };
 
             delete repos.latest.version;
@@ -45,17 +53,11 @@ jobs:
               await fs.writeFile('servers.json', JSON.stringify(repos, null, 4));
             }
 
-            async function getRepo(url) {
-              const response = await fetch(url);
+            async function getRepo(label, branch) {
+              const response = await fetch('https://downloads.slimdevices.com/nightly/?xml=1&ver=' + branch);
               const body = await response.text();
 
-              const parser = new XMLParser({
-                ignoreAttributes : false,
-                attributeNamePrefix : ''
-              });
-
-              const urlObj = new URL(url);
-              await fs.writeFile(path.basename(urlObj.pathname), body);
+              await fs.writeFile(`${label}.xml`, body);
 
               const json = parser.parse(body);
               const version = (Object.values(json.servers).find(v => v.version )).version;
