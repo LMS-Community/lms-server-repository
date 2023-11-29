@@ -1,1 +1,163 @@
-{"latest":{"deb":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_all.deb","version":"8.3.1"},"debamd64":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_amd64.deb","version":"8.3.1"},"debarm":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_arm.deb","version":"8.3.1"},"debi386":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_i386.deb","version":"8.3.1"},"default":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1","version":"8.3.1"},"nocpan":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver-8.3.1-noCPAN.tgz","version":"8.3.1"},"osx":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/LogitechMediaServer-8.3.1.pkg","version":"8.3.1"},"rpm":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver-8.3.1-1.noarch.rpm","version":"8.3.1"},"whs":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/LogitechMediaServer-8.3.1-whs.msi","version":"8.3.1"},"win":{"revision":"1676361197","url":"https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/LogitechMediaServer-8.3.1.exe","version":"8.3.1"}},"8.4.0":{"win64":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/LogitechMediaServer-8.4.0-1701163162-win64.exe","version":"8.4.0"},"win":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/LogitechMediaServer-8.4.0-1701163162.exe","version":"8.4.0"},"osx":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/LogitechMediaServer-8.4.0-1701163162.pkg","version":"8.4.0"},"src":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver-8.4.0-1701163162.tgz","version":"8.4.0"},"tararm":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver-8.4.0-1701163162-arm-linux.tgz","version":"8.4.0"},"nocpan":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver-8.4.0-1701163162-noCPAN.tgz","version":"8.4.0"},"deb":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver_8.4.0~1701163162_all.deb","version":"8.4.0"},"debamd64":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver_8.4.0~1701163162_amd64.deb","version":"8.4.0"},"debarm":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver_8.4.0~1701163162_arm.deb","version":"8.4.0"},"debi386":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver_8.4.0~1701163162_i386.deb","version":"8.4.0"},"rpm":{"revision":"1701163162","url":"http://downloads.slimdevices.com/nightly/./8.4/lms/4224a711471bafc70d236a588acefa6dfcc31f5f/logitechmediaserver-8.4.0-0.1.1701163162.noarch.rpm","version":"8.4.0"}},"8.3.2":{"win":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/LogitechMediaServer-8.3.2-1699864324.exe","version":"8.3.2"},"osx":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/LogitechMediaServer-8.3.2-1699864324.pkg","version":"8.3.2"},"src":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-1699864324.tgz","version":"8.3.2"},"tararm":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-1699864324-arm-linux.tgz","version":"8.3.2"},"nocpan":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-1699864324-noCPAN.tgz","version":"8.3.2"},"deb":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_all.deb","version":"8.3.2"},"debamd64":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_amd64.deb","version":"8.3.2"},"debarm":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_arm.deb","version":"8.3.2"},"debi386":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_i386.deb","version":"8.3.2"},"rpm":{"revision":"1699864324","url":"http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-0.1.1699864324.noarch.rpm","version":"8.3.2"}}}
+{
+    "latest": {
+        "deb": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_all.deb",
+            "version": "8.3.1"
+        },
+        "debamd64": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_amd64.deb",
+            "version": "8.3.1"
+        },
+        "debarm": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_arm.deb",
+            "version": "8.3.1"
+        },
+        "debi386": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver_8.3.1_i386.deb",
+            "version": "8.3.1"
+        },
+        "default": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1",
+            "version": "8.3.1"
+        },
+        "nocpan": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver-8.3.1-noCPAN.tgz",
+            "version": "8.3.1"
+        },
+        "osx": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/LogitechMediaServer-8.3.1.pkg",
+            "version": "8.3.1"
+        },
+        "rpm": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/logitechmediaserver-8.3.1-1.noarch.rpm",
+            "version": "8.3.1"
+        },
+        "whs": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/LogitechMediaServer-8.3.1-whs.msi",
+            "version": "8.3.1"
+        },
+        "win": {
+            "revision": "1676361197",
+            "url": "https://downloads.slimdevices.com/LogitechMediaServer_v8.3.1/LogitechMediaServer-8.3.1.exe",
+            "version": "8.3.1"
+        }
+    },
+    "8.4.0": {
+        "win64": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/LogitechMediaServer-8.4.0-1701263424-win64.exe",
+            "version": "8.4.0"
+        },
+        "win": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/LogitechMediaServer-8.4.0-1701263424.exe",
+            "version": "8.4.0"
+        },
+        "osx": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/LogitechMediaServer-8.4.0-1701263424.pkg",
+            "version": "8.4.0"
+        },
+        "src": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver-8.4.0-1701263424.tgz",
+            "version": "8.4.0"
+        },
+        "tararm": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver-8.4.0-1701263424-arm-linux.tgz",
+            "version": "8.4.0"
+        },
+        "nocpan": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver-8.4.0-1701263424-noCPAN.tgz",
+            "version": "8.4.0"
+        },
+        "deb": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver_8.4.0~1701263424_all.deb",
+            "version": "8.4.0"
+        },
+        "debamd64": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver_8.4.0~1701263424_amd64.deb",
+            "version": "8.4.0"
+        },
+        "debarm": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver_8.4.0~1701263424_arm.deb",
+            "version": "8.4.0"
+        },
+        "debi386": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver_8.4.0~1701263424_i386.deb",
+            "version": "8.4.0"
+        },
+        "rpm": {
+            "revision": "1701263424",
+            "url": "http://downloads.slimdevices.com/nightly/./8.4/lms/577fadf5d35744bec3b5f7729f29a3e87ec52568/logitechmediaserver-8.4.0-0.1.1701263424.noarch.rpm",
+            "version": "8.4.0"
+        }
+    },
+    "8.3.2": {
+        "win": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/LogitechMediaServer-8.3.2-1699864324.exe",
+            "version": "8.3.2"
+        },
+        "osx": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/LogitechMediaServer-8.3.2-1699864324.pkg",
+            "version": "8.3.2"
+        },
+        "src": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-1699864324.tgz",
+            "version": "8.3.2"
+        },
+        "tararm": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-1699864324-arm-linux.tgz",
+            "version": "8.3.2"
+        },
+        "nocpan": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-1699864324-noCPAN.tgz",
+            "version": "8.3.2"
+        },
+        "deb": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_all.deb",
+            "version": "8.3.2"
+        },
+        "debamd64": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_amd64.deb",
+            "version": "8.3.2"
+        },
+        "debarm": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_arm.deb",
+            "version": "8.3.2"
+        },
+        "debi386": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver_8.3.2~1699864324_i386.deb",
+            "version": "8.3.2"
+        },
+        "rpm": {
+            "revision": "1699864324",
+            "url": "http://downloads.slimdevices.com/nightly/./8.3/lms/2b19c834c9e5654326a573ca4190274791c4b058/logitechmediaserver-8.3.2-0.1.1699864324.noarch.rpm",
+            "version": "8.3.2"
+        }
+    }
+}
