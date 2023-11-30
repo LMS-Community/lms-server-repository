@@ -1,4 +1,4 @@
-name: Update LMS Plugin Repository
+name: Update LMS Server Repository
 
 on:
   schedule:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   merge:
-    name: Update plugin repository
+    name: Update server repository
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
