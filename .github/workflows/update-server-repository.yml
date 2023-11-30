@@ -54,7 +54,7 @@ jobs:
             }
 
             async function getRepo(label, branch) {
-              const response = await fetch('https://downloads.slimdevices.com/nightly/?xml=1&ver=' + branch);
+              const response = await fetch(`https://downloads.slimdevices.com/nightly/?xml=1&ver=${branch}&ts=${Date.now()}`);
               const body = await response.text();
 
               await fs.writeFile(`${label}.xml`, body);
