@@ -50,6 +50,7 @@ jobs:
 
             if (!deepEqual(old, repos)) {
               console.log("need to commit?!?");
+              # TODO - once we're confident this is working as expected stop formatting the JSON to save a few hundred kB
               await fs.writeFile('servers.json', JSON.stringify(repos, null, 4));
             }
 
