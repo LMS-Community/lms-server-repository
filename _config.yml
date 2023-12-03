@@ -1,16 +1,9 @@
 title: Logitech Media Server Downloads
-# email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Download Logitech Media Server to feed music to your Squeezebox, Squeezelite
   based players or SqueezePlay and compatible software packages.
   Free the Music!
-# baseurl: "" # the subpath of your site, e.g. /blog
-# url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  LMS-Community
-
-# domain: lms-community.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
-# url: https://lms-community.github.io  # the base hostname and protocol for your site, e.g. http://example.com
-# baseurl: /REPOSITORY-NAME/      # place folder name if the site is served in a subfolder
 
 # Build settings
 data_dir: .
