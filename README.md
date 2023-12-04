@@ -1,6 +1,6 @@
 ## Logitech Media Server Repository
 
-This repository handles the download links for Logitech Media Server. If you have an application which wants to check whether an update for Logitech Media Server was available, grab [`server.json`](server.json) to decide what you need.
+This repository handles the download links for Logitech Media Server. If you have an application which wants to check whether an update for Logitech Media Server was available, grab [`servers.json`](servers.json) to decide what you need.
 
 * `latest`: this section gives you information about the latest _released_ version. It's the mainstream version which should be suitable to all without special requirements.
 
