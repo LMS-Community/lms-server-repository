@@ -5,10 +5,13 @@ import { S3Client, DeleteObjectsCommand, ListObjectsV2Command } from '@aws-sdk/c
 import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
+const RELEASE_REVISION = 0; //'1676361197';
+const RELEASE_VERSION = '8.3.1';
 const STABLE_VERSION = '8.3.2';
 const DEV_VERSION = '8.4.0';
 
 const bucket = 'downloads.slimdevices.com';
+const LATEST_FILE = 'latest.xml';
 const STABLE_FILE = 'stable.xml';
 const DEV_FILE = 'dev.xml';
 const MAX_REVISIONS = 3;
@@ -27,19 +30,12 @@ const client = new S3Client({
 });
 
 (async () => {
-	let response;
-	try {
-		response = await client.send(new ListObjectsV2Command({
-			Bucket: bucket,
-			Prefix: 'nightly/',
-		}));
-	}
-	catch (err) {
-		console.error(err);
-	}
+	// get latest release info
+	if (RELEASE_REVISION)
+		await createRepoFile(await getProdFilelist(), LATEST_FILE, RELEASE_REVISION);
 
 	// remove old nightly builds etc.
-	const { dev, stable } = await cleanupRepository(response.Contents);
+	const { dev, stable } = await cleanupNightlies();
 
 	// create XML for the nightlies
 	await createRepoFile(stable, STABLE_FILE);
@@ -55,14 +51,51 @@ const client = new S3Client({
 		latest: (parser.parse(await readFile('latest.xml'))).servers
 	};
 
-	repos[DEV_VERSION] = (parser.parse(await readFile('dev.xml'))).servers;
-	repos[STABLE_VERSION] = (parser.parse(await readFile('stable.xml'))).servers;
+	repos[DEV_VERSION] = (parser.parse(await readFile(DEV_FILE))).servers;
+	repos[STABLE_VERSION] = (parser.parse(await readFile(STABLE_FILE))).servers;
 
 	// TODO - once we're confident this is working as expected stop formatting the JSON to save a few hundred kB
 	await writeFile('servers.json', JSON.stringify(repos, null, 4));
 })();
 
-async function cleanupRepository(fileList) {
+async function getProdFilelist() {
+	let fileList;
+	try {
+		const response = await client.send(new ListObjectsV2Command({
+			Bucket: bucket,
+			Prefix: `LogitechMediaServer_v${RELEASE_VERSION}/`,
+		}));
+
+		fileList = response.Contents || [];
+	}
+	catch (err) {
+		console.error(err);
+	}
+
+	if (fileList.length < 1) return;
+
+	return fileList.map(file => {
+		return {
+			path: file.Key,
+			size: file.Size
+		};
+	});
+}
+
+async function cleanupNightlies() {
+	let fileList;
+	try {
+		const response = await client.send(new ListObjectsV2Command({
+			Bucket: bucket,
+			Prefix: 'nightly/',
+		}));
+
+		fileList = response.Contents || [];
+	}
+	catch (err) {
+		console.error(err);
+	}
+
 	if (fileList.length < 1) return {};
 
 	const versions = {
@@ -125,36 +158,33 @@ async function cleanupRepository(fileList) {
 	return response;
 }
 
-async function createRepoFile(files, filename) {
+async function createRepoFile(files, filename, revision) {
 	if (!files || files.length < 1) return;
+
+	let matcher = revision
+		? path => path.match(/logitechmediaserver.(\d+\.\d\.\d).*/i)
+		: path => path.match(/logitechmediaserver.(\d+\.\d\.\d).*(\d{10})/i);
 
 	try {
 		const repo = [];
 
 		// sort items by URL to always have them in the same order and prevent unnecessary repo update commits
-		files.sort((a, b) => {
-			if (a.path < b.path) return -1;
-			else if (a.path > b.path) return 1;
-			return 0;
-		}).forEach(release => {
+		files.sort(fileSorter).forEach(release => {
 			if (!(release && release.path && release.size))
 				return;
 
-			const matches = release.path.match(/logitechmediaserver.(\d+\.\d\.\d).*(\d{10})/i);
-			if (matches.length > 2) {
-				const platform = getPlatform(release.path);
-
-				if (platform) {
-					repo.push({
-						_name: platform,
-						_attrs: {
-							url: 'https://' + bucket + '/' + release.path,
-							version: matches[1],
-							revision: matches[2],
-							size: prettySize(release.size)
-						}
-					});
-				}
+			const platform = getPlatform(release.path);
+			const matches = matcher(release.path);
+			if (platform && matches) {
+				repo.push({
+					_name: platform,
+					_attrs: {
+						url: 'https://' + bucket + '/' + release.path,
+						version: matches[1],
+						revision: matches[2] || revision,
+						size: prettySize(release.size)
+					}
+				});
 			}
 		});
 
@@ -162,6 +192,12 @@ async function createRepoFile(files, filename) {
 	} catch (err) {
 		console.error(err);
 	}
+}
+
+function fileSorter(a, b) {
+	if (a.path < b.path) return -1;
+	else if (a.path > b.path) return 1;
+	return 0;
 }
 
 function prettySize(bytes) {
