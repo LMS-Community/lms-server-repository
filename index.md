@@ -40,7 +40,7 @@ The `stable` branch is `latest` with some additional bug fixes. Use this if you 
 
 ## Development Build - {{ page.dev }}
 
-The `dev` version is where you'll find all the latest and greatest features. But as it's under development you might encounter bugs, or changing behaviour. Use at your own risk!
+The `dev` version is where you'll find all the latest and greatest features. But as it's under development you might encounter bugs, or changing behaviour. Please only use this build if you're willing to deal with the occasional broken build!
 
 {% include release-block.md branch=page.dev page=page %}
 
