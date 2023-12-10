@@ -118,7 +118,7 @@ async function cleanupNightlies() {
 				size: file.Size
 			});
 		}
-		else {
+		else if ( !file.Key.match(/index\.(php|html)$/) ) {
 			versions.obsolete.push(file);
 		}
 	});
