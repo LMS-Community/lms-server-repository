@@ -4,8 +4,8 @@
 
 platforms:
    win: Windows Executable Installer
-   win64: Windows 64-bit Executable Installer - EXPERIMENTAL!
-   osx: Mac OSX Installer
+   win64: Windows 64-bit Installer - EXPERIMENTAL!
+   osx: Apple macOS Installer
    debamd64: Debian Installer Package (x86_64)
    debarm: Debian Installer Package (ARM)
    debi386: Debian Installer Package (i386)
@@ -25,7 +25,7 @@ This is the community download site for the Logitech Media Server. If you have a
 don't hesitate to get in touch with the community over over at the [Squeezebox Community Forums](https://forums.slimdevices.com/).
 
 ---
-## ⭐️⭐️⭐️ Latest Release - {{ page.latest }} ⭐️⭐️⭐️
+## ⭐️⭐️⭐️ {{ page.latest }} - Latest Release ⭐️⭐️⭐️
 
 Use the `latest` release if you want to run the best tested version of Logitech Media Server.
 
@@ -33,7 +33,7 @@ Use the `latest` release if you want to run the best tested version of Logitech 
 
 ---
 
-## ⭐️⭐️ Stable Nightly Build - {{ page.stable }} ⭐️⭐️
+## ⭐️⭐️ {{ page.stable }} - Stable Nightly Build ⭐️⭐️
 
 The `stable` branch is `latest` with some additional bug fixes. Use this if you want to use a reliable system,
 but need an important fix.
@@ -42,7 +42,7 @@ but need an important fix.
 
 ---
 
-## 💥⭐️💥 Development Build - {{ page.dev }} 💥⭐️💥
+## 💥⭐️💥 {{ page.dev }} - Development Build 💥⭐️💥
 
 The `dev` version is where you'll find all the latest and greatest features. But as it's under development
 you might encounter bugs, or changing behaviour. Please only use this build if you're willing to deal with
