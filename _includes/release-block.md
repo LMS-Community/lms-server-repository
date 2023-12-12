@@ -1,7 +1,9 @@
-{% for download in site.data.servers[include.branch] %}
-   {%- if download[0] != 'default' and download[0] != 'whs' -%}
-   {% assign platform = download[0] %}
-   | {{ page.platforms[platform] }} | [{{ download[1].url | split: "/" | last }}]({{ download[1].url | replace: "http:", "https:" }}) | {{ download[1].size }} | {{ download[1].revision | date: "%B %d %Y %H:%M" }} |
+{% assign downloads = site.data.servers[include.branch] %}
+{% for platform in page.platforms %}
+   {%- assign platformId = platform[0] -%}
+   {%- assign download = downloads[platformId] -%}
+   {%- if download.url %}
+   | {{ platform[1] }} | [{{ download.url | split: "/" | last }}]({{ download.url | replace: "http:", "https:" }}) | {{ download.size }} | {{ download.revision | date: "%B %d %Y %H:%M" }} |
    {%- endif -%}
 {% endfor %}
 

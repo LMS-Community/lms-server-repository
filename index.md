@@ -6,14 +6,14 @@ platforms:
    win: Windows Executable Installer
    win64: Windows 64-bit Executable Installer - EXPERIMENTAL!
    osx: Mac OSX Installer
-   src: Unix Tarball (i386, x86_64, i386 FreeBSD, ARM EABI)
-   tararm: ARM Linux Tarball (ARM EABI)
-   nocpan: Unix Tarball - No CPAN Libraries
-   deb: Debian Installer Package (i386, x86_64, ARM EABI)
    debamd64: Debian Installer Package (x86_64)
    debarm: Debian Installer Package (ARM)
    debi386: Debian Installer Package (i386)
+   deb: Debian Installer Package (i386, x86_64, ARM)
    rpm: RedHat (RPM) Installer Package
+   tararm: ARM Linux Tarball
+   src: Unix Tarball (i386, x86_64, i386 FreeBSD, ARM)
+   nocpan: Unix Tarball - No CPAN Libraries
 latest: 8.3.1
 stable: 8.3.2
 dev: 8.4.0
