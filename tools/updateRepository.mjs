@@ -55,7 +55,7 @@ const client = new S3Client({
 	repos[STABLE_VERSION] = (parser.parse(await readFile(STABLE_FILE))).servers;
 
 	// TODO - once we're confident this is working as expected stop formatting the JSON to save a few hundred kB
-	await writeFile('servers.json', JSON.stringify(repos, null, 4));
+	await writeFile('servers.json', JSON.stringify(repos));
 })();
 
 async function getProdFilelist() {

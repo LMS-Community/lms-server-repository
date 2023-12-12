@@ -21,6 +21,9 @@ dev: 8.4.0
 
 # {{ site.title }}
 
+This is the community download site for the Logitech Media Server. If you have any questions or feedback,
+don't hesitate to get in touch with the community over over at the [Squeezebox Community Forums](https://forums.slimdevices.com/).
+
 ---
 ## Latest Release - {{ page.latest }}
 
@@ -32,7 +35,8 @@ Use the `latest` release if you want to run the best tested version of Logitech 
 
 ## Stable Nightly Build - {{ page.stable }}
 
-The `stable` branch is `latest` with some additional bug fixes. Use this if you want to use a reliable system, but need an important fix.
+The `stable` branch is `latest` with some additional bug fixes. Use this if you want to use a reliable system,
+but need an important fix.
 
 {% include release-block.md branch=page.stable page=page %}
 
@@ -40,7 +44,9 @@ The `stable` branch is `latest` with some additional bug fixes. Use this if you 
 
 ## Development Build - {{ page.dev }}
 
-The `dev` version is where you'll find all the latest and greatest features. But as it's under development you might encounter bugs, or changing behaviour. Please only use this build if you're willing to deal with the occasional broken build!
+The `dev` version is where you'll find all the latest and greatest features. But as it's under development
+you might encounter bugs, or changing behaviour. Please only use this build if you're willing to deal with
+the occasional broken build!
 
 {% include release-block.md branch=page.dev page=page %}
 
