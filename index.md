@@ -22,7 +22,8 @@ dev: 8.4.0
 # {{ site.title }}
 
 This is the community download site for the Logitech Media Server. If you have any questions or feedback,
-don't hesitate to get in touch with the community over over at the [Squeezebox Community Forums](https://forums.slimdevices.com/).
+don't hesitate to get in touch with the community over at the [Squeezebox Community Forums](https://forums.slimdevices.com/).
+Or visit [https://lms-community.github.io](https://lms-community.github.io) to learn more about Logitech Media Server.
 
 If you're looking for the Docker image of Logitech Media Server, please head over to the [Docker Hub Page](https://hub.docker.com/r/lmscommunity/logitechmediaserver).
 
