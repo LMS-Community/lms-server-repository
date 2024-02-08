@@ -5,10 +5,10 @@ import { S3Client, DeleteObjectsCommand, ListObjectsV2Command } from '@aws-sdk/c
 import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
-const RELEASE_REVISION = 0; //'1676361197';
-const RELEASE_VERSION = '8.3.1';
-const STABLE_VERSION = '8.3.2';
-const DEV_VERSION = '8.4.0';
+const RELEASE_REVISION = 1707213032;
+const RELEASE_VERSION = '8.4.0';
+const STABLE_VERSION = '8.4.1';
+const DEV_VERSION = '8.4.1';
 
 const bucket = 'downloads.slimdevices.com';
 const LATEST_FILE = 'latest.xml';
