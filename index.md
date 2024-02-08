@@ -14,9 +14,9 @@ platforms:
    tararm: ARM Linux Tarball
    src: Unix Tarball (i386, x86_64, i386 FreeBSD, ARM)
    nocpan: Unix Tarball - No CPAN Libraries
-latest: 8.3.1
-stable: 8.3.2
-dev: 8.4.0
+latest: 8.4.0
+stable: 8.4.1
+dev: 8.4.1
 ---
 
 # {{ site.title }}
