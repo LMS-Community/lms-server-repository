@@ -35,7 +35,8 @@ const client = new S3Client({
 		await createRepoFile(await getProdFilelist(), LATEST_FILE, RELEASE_REVISION);
 
 	// remove old nightly builds etc.
-	const { dev, stable } = await cleanupNightlies();
+	let { dev, stable } = await cleanupNightlies();
+	if (dev.length < 1) dev = stable;
 
 	// create XML for the nightlies
 	await createRepoFile(stable, STABLE_FILE);
