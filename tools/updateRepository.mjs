@@ -8,7 +8,7 @@ import { XMLParser } from 'fast-xml-parser';
 const RELEASE_REVISION = 1707213032;
 const RELEASE_VERSION = '8.4.0';
 const STABLE_VERSION = '8.4.1';
-const DEV_VERSION = '8.4.1';
+const DEV_VERSION = '8.5.0';
 
 const bucket = 'downloads.slimdevices.com';
 const LATEST_FILE = 'latest.xml';
@@ -36,7 +36,7 @@ const client = new S3Client({
 
 	// remove old nightly builds etc.
 	let { dev, stable } = await cleanupNightlies();
-	if (dev.length < 1) dev = stable;
+	if (dev.length < 1 && STABLE_VERSION === DEV_VERSION) dev = stable;
 
 	// create XML for the nightlies
 	await createRepoFile(stable, STABLE_FILE);

@@ -16,7 +16,7 @@ platforms:
    nocpan: Unix Tarball - No CPAN Libraries
 latest: 8.4.0
 stable: 8.4.1
-dev: 8.4.1
+dev: 8.5.0
 ---
 
 # {{ site.title }}
