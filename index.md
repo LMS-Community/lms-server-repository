@@ -32,7 +32,7 @@ If you're looking for the Docker image of Logitech Media Server, please head ove
 
 Use the `latest` release if you want to run the best tested version of Logitech Media Server.
 
-{% include release-block.md branch="latest" page=page %}
+{% include release-block.md branch="latest" page=page version=page.latest %}
 
 ---
 
@@ -41,7 +41,7 @@ Use the `latest` release if you want to run the best tested version of Logitech 
 The `stable` branch is `latest` with some additional bug fixes. Use this if you want to use a reliable system,
 but need an important fix.
 
-{% include release-block.md branch=page.stable page=page %}
+{% include release-block.md branch=page.stable page=page version=page.stable %}
 
 ---
 
@@ -51,6 +51,9 @@ The `dev` version is where you'll find all the latest and greatest features. But
 you might encounter bugs, or changing behaviour. Please only use this build if you're willing to deal with
 the occasional broken build!
 
-{% include release-block.md branch=page.dev page=page %}
+**Please note that this version is undergoing major changes. Do _not_ install unless you are prepared to fix
+your installation manually!**
+
+{% include release-block.md branch=page.dev page=page version=page.dev %}
 
 ---

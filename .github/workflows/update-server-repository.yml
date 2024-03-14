@@ -42,6 +42,7 @@ jobs:
           git status
 
       - name: Cleanup old runs
+        if: ${{ env.DEBUG == '' }}
         uses: actions/github-script@v7
         with:
           script: |
