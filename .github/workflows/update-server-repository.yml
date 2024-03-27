@@ -20,6 +20,9 @@ jobs:
         env:
           ACCESS_KEY_ID: '${{ secrets.ACCESS_KEY_ID }}'
           SECRET_ACCESS_KEY: '${{ secrets.SECRET_ACCESS_KEY }}'
+          R2_ACCESS_KEY_ID: '${{ secrets.R2_ACCESS_KEY_ID }}'
+          R2_SECRET_ACCESS_KEY: '${{ secrets.R2_SECRET_ACCESS_KEY }}'
+          R2_ENDPOINT_URL: '${{ secrets.R2_ENDPOINT_URL }}'
         run: node tools/updateRepository.mjs
 
       - name: Commit Changes (if needed)

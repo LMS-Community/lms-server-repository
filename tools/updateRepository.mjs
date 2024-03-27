@@ -10,23 +10,27 @@ const RELEASE_VERSION = '8.5.0';
 const STABLE_VERSION = '8.5.1';
 const DEV_VERSION = '9.0.0';
 
-const bucket = 'downloads.slimdevices.com';
+const bucket = 'downloads';
+const downloadUrl = 'downloads.lms-community.org';
 const LATEST_FILE = 'latest.xml';
 const STABLE_FILE = 'stable.xml';
 const DEV_FILE = 'dev.xml';
 const MAX_REVISIONS = 3;
+let TESTING = false;
 
 // in testing read secrets from file (unless defined already)
-if (!process.env.ACCESS_KEY_ID || !process.env.SECRET_ACCESS_KEY) {
+if (!process.env.R2_ACCESS_KEY_ID || !process.env.R2_SECRET_ACCESS_KEY) {
+	TESTING = true;
 	dotenv.config({ path: path.resolve(process.cwd(), '.secrets') });
 }
 
 const client = new S3Client({
-  region: 'us-east-1',
-  credentials: {
-	 accessKeyId: process.env.ACCESS_KEY_ID,
-	 secretAccessKey: process.env.SECRET_ACCESS_KEY
-  }
+	region: 'us-east-1',
+	endpoint: process.env.R2_ENDPOINT_URL,
+	credentials: {
+		accessKeyId: process.env.R2_ACCESS_KEY_ID,
+		secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+	}
 });
 
 (async () => {
@@ -140,8 +144,11 @@ async function cleanupNightlies() {
 		response[v === STABLE_VERSION ? 'stable' : 'dev'] = vs[r];
 	});
 
+	if (TESTING)
+		console.log(JSON.stringify(versions, null, 2));
+
 	// remove obsolete objects
-	if (versions.obsolete.length) {
+	if (versions.obsolete.length && !TESTING) {
 		try {
 			await client.send(new DeleteObjectsCommand({
 				Bucket: bucket,
@@ -179,7 +186,7 @@ async function createRepoFile(files, filename, revision) {
 				repo.push({
 					_name: platform,
 					_attrs: {
-						url: 'https://' + bucket + '/' + release.path,
+						url: 'https://' + downloadUrl + '/' + release.path,
 						version: matches[1],
 						revision: matches[2] || revision,
 						size: prettySize(release.size)
