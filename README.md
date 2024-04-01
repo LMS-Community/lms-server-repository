@@ -1,7 +1,7 @@
-## Logitech Media Server Repository
+## Lyrion Music Server / (fka. Logitech Media Server) Repository
 
-This repository handles the download links for Logitech Media Server. If you have an application which
-wants to check whether an update for Logitech Media Server was available, grab
+This repository handles the download links for Lyrion Music Server. If you have an application which
+wants to check whether an update for Lyrion Music Server was available, grab
 [`servers.json`](servers.json) to decide what you need.
 
 * `latest`: this section gives you information about the latest _released_ version. It's the
@@ -26,7 +26,7 @@ SECRET_ACCESS_KEY="************"
 ```
 
 Where `GITHUB_TOKEN` is a Personal Access Token granting you permission to access this repository,
-and `ACCESS_KEY_ID` and `SECRET_ACCESS_KEY` are the credentials required to access `s3://downlaods.slimdevices.com`.
+and `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY` are the credentials required to access the R2 bucket on Cloudflare.
 You'll need at least read/write permissions on that bucket.
 
 Then run the following command to test the action:

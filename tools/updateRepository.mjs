@@ -111,7 +111,7 @@ async function cleanupNightlies() {
 	};
 
 	fileList.forEach(file => {
-		const matches = file.Key.match(/logitechmediaserver.(\d+\.\d\.\d).*(\d{10})/i);
+		const matches = file.Key.match(/(?:LyrionMusicServer|logitechmediaserver).(\d+\.\d\.\d).*(\d{10})/i);
 
 		// put anything but dev/stable versions on the cleanup list
 		if ( matches && matches.length === 3 && (matches[1] === STABLE_VERSION || matches[1] === DEV_VERSION) ) {
@@ -169,8 +169,8 @@ async function createRepoFile(files, filename, revision) {
 	if (!files || files.length < 1) return;
 
 	let matcher = revision
-		? path => path.match(/logitechmediaserver.(\d+\.\d\.\d).*/i)
-		: path => path.match(/logitechmediaserver.(\d+\.\d\.\d).*(\d{10})/i);
+		? path => path.match(/(?:LyrionMusicServer|logitechmediaserver).(\d+\.\d\.\d).*/i)
+		: path => path.match(/(?:LyrionMusicServer|logitechmediaserver).(\d+\.\d\.\d).*(\d{10})/i);
 
 	try {
 		const repo = [];

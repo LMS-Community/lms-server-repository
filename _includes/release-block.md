@@ -9,7 +9,7 @@
 
 {% if include.page[include.branch] %}
    {% assign branch = include.page[include.branch] %}
-[Changelog](https://htmlpreview.github.io/?https://raw.githubusercontent.com/Logitech/slimserver/{{ branch }}/Changelog{{ include.version | split: "." | first }}.html) -
+[Changelog](https://htmlpreview.github.io/?https://raw.githubusercontent.com/LMS-Community/slimserver/{{ branch }}/Changelog{{ include.version | split: "." | first }}.html) -
 [Git Commit Log](https://github.com/LMS-Community/slimserver/commits/{{ branch }})
 {% else %}
    {% assign branch = include.branch | truncate: 3, '' %}
