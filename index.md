@@ -23,7 +23,7 @@ dev: 9.0.0
 
 This is the community download site for the Lyrion Music Server / Logitech Media Server. If you have any questions or feedback,
 don't hesitate to get in touch with the community over at the [Squeezebox Community Forums](https://forums.slimdevices.com/).
-Or visit [https://lms-community.github.io](https://lms-community.github.io) to learn more about Lyrion Music Server and
+Or visit [https://lyrion.org](https://lyrion.org) to learn more about Lyrion Music Server and
 Logitech Media Server.
 
 If you're looking for the Docker image of Logitech Media Server, please head over to the [Docker Hub Page](https://hub.docker.com/r/lmscommunity/logitechmediaserver).
