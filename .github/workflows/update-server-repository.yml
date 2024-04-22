@@ -45,6 +45,8 @@ jobs:
           git status
 
       - name: Update web site
+        permissions:
+          actions: write
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run main.yml -R LMS-Community/lms-community.github.io
