@@ -49,5 +49,5 @@ jobs:
 
       - name: Update web site
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.DEPLOYMENT_KEY }}
         run: gh workflow run main.yml -R LMS-Community/lms-community.github.io
