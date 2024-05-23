@@ -3,8 +3,8 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 platforms:
-   win: Windows Executable Installer
-   win64: Windows 64-bit Installer - EXPERIMENTAL!
+   win: Windows 32-bit Installer
+   win64: Windows 64-bit Installer
    osx: Apple macOS Installer
    debamd64: Debian Installer Package (x86_64)
    debarm: Debian Installer Package (ARM)
