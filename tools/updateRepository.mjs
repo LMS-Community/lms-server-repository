@@ -5,7 +5,7 @@ import { S3Client, DeleteObjectsCommand, ListObjectsV2Command } from '@aws-sdk/c
 import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
-const RELEASE_REVISION = 1716738291;
+const RELEASE_REVISION = 1716215514;
 const RELEASE_VERSION = '8.5.2';
 const STABLE_VERSION = '8.5.3';
 const DEV_VERSION = '9.0.0';
