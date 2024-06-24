@@ -233,6 +233,7 @@ function getPlatform(file) {
 	else if (file.match(/_all\.deb$/))      return 'deb';
 	else if (file.match(/noCPAN\.tgz$/))    return 'nocpan';
 	else if (file.match(/arm-linux\.tgz$/)) return 'tararm';
+	else if (file.match(/MusicalFidelity\.tgz$/)) return 'encore';
 	else if (file.match(/\.tgz$/))          return 'src';
 	else if (file.match(/\.pkg$/))          return 'osx';
 }
