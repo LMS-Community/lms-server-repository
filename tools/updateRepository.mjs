@@ -195,6 +195,27 @@ async function createRepoFile(files, filename, revision) {
 			}
 		});
 
+		// migrate macOS PrefPane users to using the MenuBar item:
+		// if a new "macos" item exists, replace legacy "osx" with the former
+		const macOS = repo.find(i => i._name === 'macos')
+		if (macOS) {
+			let hasOSX = true;
+
+			// see whether a legacy builds exists - replace if yes
+			const osx = repo.find(i => i._name === 'osx') || (() => {
+				hasOSX = false;
+				return {
+					_name: 'osx',
+					_attrs: {}
+				};
+			})();
+
+			osx._attrs = { ...macOS._attrs };
+
+			// legacy build did not exist - add it
+			if (!hasOSX) repo.push(osx);
+		}
+
 		await writeFile(filename, jstoxml.toXML({ servers: repo }));
 	} catch (err) {
 		console.error(err);
