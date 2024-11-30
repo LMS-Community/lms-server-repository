@@ -67,7 +67,7 @@ async function getProdFilelist() {
 	try {
 		const response = await client.send(new ListObjectsV2Command({
 			Bucket: bucket,
-			Prefix: `LogitechMediaServer_v${RELEASE_VERSION}/`,
+			Prefix: `LyrionMusicServer_v${RELEASE_VERSION}/`,
 		}));
 
 		fileList = response.Contents || [];

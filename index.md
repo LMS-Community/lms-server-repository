@@ -27,7 +27,7 @@ don't hesitate to get in touch with the community over at the [Squeezebox Commun
 Or visit [https://lyrion.org](https://lyrion.org) to learn more about Lyrion Music Server and
 Logitech Media Server.
 
-If you're looking for the Docker image of Logitech Media Server, please head over to the [Docker Hub Page](https://hub.docker.com/r/lmscommunity/logitechmediaserver).
+If you're looking for the Docker image of Lyrion Music Server, please head over to the [Docker Hub Page](https://hub.docker.com/r/lmscommunity/lyrionmusicserver).
 
 ---
 ## ⭐️⭐️⭐️ {{ page.latest }} - Latest Release ⭐️⭐️⭐️
