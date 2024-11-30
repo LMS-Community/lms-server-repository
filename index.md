@@ -13,6 +13,7 @@ platforms:
    rpm: RedHat (RPM) Installer Package
    tararm: ARM Linux Tarball
    src: Unix Tarball (i386, x86_64, i386 FreeBSD, ARM)
+   encore: Musical Fidelity
    nocpan: Unix Tarball - No CPAN Libraries
 latest: 8.5.2
 stable: 8.5.3
