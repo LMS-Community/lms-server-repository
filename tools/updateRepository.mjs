@@ -5,10 +5,10 @@ import { S3Client, DeleteObjectsCommand, ListObjectsV2Command } from '@aws-sdk/c
 import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
-const RELEASE_REVISION = 1716215514;
-const RELEASE_VERSION = '8.5.2';
-const STABLE_VERSION = '8.5.3';
-const DEV_VERSION = '9.0.0';
+const RELEASE_REVISION = 1732822968;
+const RELEASE_VERSION = '9.0.0';
+const STABLE_VERSION = '9.0.1';
+const DEV_VERSION = '9.1.0';
 
 const bucket = 'downloads';
 const downloadUrl = 'downloads.lms-community.org';
