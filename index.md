@@ -31,7 +31,7 @@ If you're looking for the Docker image of Lyrion Music Server, please head over 
 ---
 ## ⭐️⭐️⭐️ {{ page.latest }} - Latest Release ⭐️⭐️⭐️
 
-Use the `latest` release if you want to run the best tested version of Logitech Media Server.
+Use the `latest` release if you want to run the best tested version of Lyrion Music Server.
 
 {% include release-block.md branch="latest" page=page version=page.latest %}
 
@@ -48,8 +48,7 @@ but need an important fix.
 
 ## 💥⭐️💥 Lyrion Music Server {{ page.dev }} - Development Build 💥⭐️💥
 
-The `dev` version is where you'll find all the latest and greatest features. And it comes with the new name
-*Lyrion Music Server*. But as it's under development
+The `dev` version is where you'll find all the latest and greatest features. But as it's under development
 you might encounter bugs, or changing behaviour. Please only use this build if you're willing to deal with
 the occasional broken build!
 
