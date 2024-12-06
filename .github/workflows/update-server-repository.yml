@@ -8,7 +8,7 @@ on:
 jobs:
   merge:
     name: Update server repository
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
 
   bumpWebSite:
     name: Bump lyrion.org to pick up latest server builds
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: merge
     permissions:
       actions: write
