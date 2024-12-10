@@ -32,7 +32,7 @@ jobs:
             echo No changes to commit
           else
             git config user.name "LMS Server Repository Updater"
-            git config user.email "michael@slimdevices.com"
+            git config user.email "gitmaster@lms-community.org"
             git add latest.xml stable.xml dev.xml servers.json
             git commit -a -m "Update Server Repository ${{ github.event.inputs.version }}"
             git push
