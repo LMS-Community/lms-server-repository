@@ -23,7 +23,7 @@ dev: 9.1.0
 # {{ site.title }}
 
 This is the community download site for the Lyrion Music Server. If you have any questions or feedback,
-don't hesitate to get in touch with the community over at the [Squeezebox Community Forums](https://forums.slimdevices.com/).
+don't hesitate to get in touch with the community over at the [Squeezebox Community Forums](https://forums.lyrion.org/).
 Or visit [https://lyrion.org](https://lyrion.org) to learn more about Lyrion Music Server.
 
 If you're looking for the Docker image of Lyrion Music Server, please head over to the [Docker Hub Page](https://hub.docker.com/r/lmscommunity/lyrionmusicserver).
