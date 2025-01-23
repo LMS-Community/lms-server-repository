@@ -111,7 +111,7 @@ async function cleanupNightlies() {
 	};
 
 	fileList.forEach(file => {
-		const matches = file.Key.match(/(?:LyrionMusicServer|logitechmediaserver).(\d+\.\d\.\d).*(\d{10})/i);
+		const matches = file.Key.match(/(?:LyrionMusicServer|logitechmediaserver).(\d+\.\d+\.\d+).*(\d{10})/i);
 
 		// put anything but dev/stable versions on the cleanup list
 		if ( matches && matches.length === 3 && (matches[1] === STABLE_VERSION || matches[1] === DEV_VERSION) ) {
@@ -129,7 +129,8 @@ async function cleanupNightlies() {
 
 	[DEV_VERSION, STABLE_VERSION].forEach(v => {
 		if (!versions[v] || versions[v].length < 1) return;
-
+		
+		const channel = response[v === STABLE_VERSION ? 'stable' : 'dev'];
 		const vs = versions[v];
 
 		// purge old revisions of dev/stable builds
@@ -139,13 +140,31 @@ async function cleanupNightlies() {
 			delete vs[r];
 		});
 
-		// pick the latest revision of the current version
-		const r = Object.keys(vs).sort().pop();
-		response[v === STABLE_VERSION ? 'stable' : 'dev'] = vs[r];
+		// use latest of each build available
+		Object.keys(vs).sort().forEach(r => {
+			vs[r].forEach(file => {
+				const matches = file.path.match(/(?:LyrionMusicServer|logitechmediaserver).\d+\.\d+\.\d+.*(\d{10})/i);
+
+				const revision = matches && matches.length === 2 ? matches[1] : null;
+				const matcher = file.path.replace(revision, `(\\d{10})`);
+				
+				const i = channel.findIndex(f => {
+					const revisionMatches = f.path.match(new RegExp(matcher));
+					return revisionMatches && revisionMatches[1] <= revision;
+				});
+
+				if (-1 === i) {
+					channel.push(file);
+				}
+				else {
+					channel[i] = file;
+				}
+			});
+		});
 	});
 
 	if (TESTING)
-		console.log(JSON.stringify(versions, null, 2));
+		console.log(JSON.stringify(versions, null, 2), response);
 
 	// remove obsolete objects
 	if (versions.obsolete.length && !TESTING) {
