@@ -277,5 +277,6 @@ function getPlatform(file) {
 	else if (file.match(/\.tgz$/))          return 'src';
 	else if (file.match(/\.pkg$/))          return 'osx';
 	else if (file.match(/\.dmg$/))          return 'macos';
+	else if (file.match(/\.tcz$/))          return 'pcp';
 	// else if (file.match(/macOS\.zip$/))     return 'macos';
 }
