@@ -1,7 +1,7 @@
 import * as path from 'path';
 import dotenv  from "dotenv"
 import { readFile, writeFile } from 'fs/promises';
-import { S3Client, DeleteObjectsCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
+import { S3Client, DeleteObjectsCommand, ListObjectsV2Command, GetObjectCommand } from '@aws-sdk/client-s3';
 import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
@@ -195,14 +195,16 @@ async function createRepoFile(files, filename, revision) {
 		const repo = [];
 
 		// sort items by URL to always have them in the same order and prevent unnecessary repo update commits
-		files.sort(fileSorter).forEach(release => {
+		for (const release of files.sort(fileSorter)) {
 			if (!(release && release.path && release.size))
-				return;
+				continue;
 
 			const platform = getPlatform(release.path);
 			const matches = matcher(release.path);
+			const checksum = await getChecksum(release.path, files);
+
 			if (platform && matches) {
-				repo.push({
+				const item = {
 					_name: platform,
 					_attrs: {
 						url: 'https://' + downloadUrl + '/' + release.path,
@@ -210,9 +212,13 @@ async function createRepoFile(files, filename, revision) {
 						revision: matches[2] || revision,
 						size: prettySize(release.size)
 					}
-				});
+				};
+
+				if (checksum) item._attrs.md5 = checksum;
+
+				repo.push(item);
 			}
-		});
+		}
 
 		// migrate macOS PrefPane users to using the MenuBar item:
 		// if a new "macos" item exists, replace legacy "osx" with the former
@@ -245,6 +251,29 @@ function fileSorter(a, b) {
 	if (a.path < b.path) return -1;
 	else if (a.path > b.path) return 1;
 	return 0;
+}
+
+async function getChecksum(file, files) {
+	const checksumFile = files.find(f => f.path === file + '.md5');
+
+	// checksums are usually around 32 bytes, plus filename - should be short!
+	if (!checksumFile || checksumFile.size > 200) return;
+
+	try {
+		if (checksumFile) {
+			const response = await client.send(new GetObjectCommand({
+				Bucket: bucket,
+				Key: checksumFile.path,
+			}));
+
+			const content = await response?.Body?.transformToString();
+			const checksum = content.match(/([a-f0-9]{32})/i);
+			if (checksum) return checksum[1];
+		}
+	}
+	catch (err) {
+		console.error(err);
+	}
 }
 
 function prettySize(bytes) {
