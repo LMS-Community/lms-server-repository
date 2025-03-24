@@ -142,7 +142,7 @@ async function cleanupNightlies() {
 
 		// use latest of each build available
 		Object.keys(vs).sort().forEach(r => {
-			vs[r].forEach(file => {
+			vs[r].filter(file => !file.path.match(/\.md5$/)).forEach(file => {
 				const matches = file.path.match(/(?:LyrionMusicServer|logitechmediaserver).\d+\.\d+\.\d+.*(\d{10})/i);
 
 				const revision = matches && matches.length === 2 ? matches[1] : null;
@@ -164,7 +164,7 @@ async function cleanupNightlies() {
 	});
 
 	if (TESTING)
-		console.log(JSON.stringify(versions, null, 2), response);
+		console.log(response, versions.obsolete);
 
 	// remove obsolete objects
 	if (versions.obsolete.length && !TESTING) {
@@ -196,12 +196,12 @@ async function createRepoFile(files, filename, revision) {
 
 		// sort items by URL to always have them in the same order and prevent unnecessary repo update commits
 		for (const release of files.sort(fileSorter)) {
-			if (!(release && release.path && release.size))
+			if (!(release && release.path && release.size) || release.path.match(/\.md5$/))
 				continue;
 
 			const platform = getPlatform(release.path);
 			const matches = matcher(release.path);
-			const checksum = await getChecksum(release.path, files);
+			const checksum = await getChecksum(release.path);
 
 			if (platform && matches) {
 				const item = {
@@ -253,26 +253,21 @@ function fileSorter(a, b) {
 	return 0;
 }
 
-async function getChecksum(file, files) {
-	const checksumFile = files.find(f => f.path === file + '.md5');
-
-	// checksums are usually around 32 bytes, plus filename - should be short!
-	if (!checksumFile || checksumFile.size > 200) return;
-
+async function getChecksum(file) {
 	try {
-		if (checksumFile) {
-			const response = await client.send(new GetObjectCommand({
-				Bucket: bucket,
-				Key: checksumFile.path,
-			}));
+		const response = await client.send(new GetObjectCommand({
+			Bucket: bucket,
+			Key: file + '.md5',
+		}));
 
+		if (response?.Body) {
 			const content = await response?.Body?.transformToString();
 			const checksum = content.match(/([a-f0-9]{32})/i);
 			if (checksum) return checksum[1];
 		}
 	}
 	catch (err) {
-		console.error(err);
+		if (err.Code !== 'NoSuchKey') console.error(err, file);
 	}
 }
 
