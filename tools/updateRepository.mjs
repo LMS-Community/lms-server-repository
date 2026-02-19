@@ -6,9 +6,9 @@ import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
 const RELEASE_REVISION = 1759466965;
-const RELEASE_VERSION = '9.0.3';
-const STABLE_VERSION = '9.0.4';
-const DEV_VERSION = '9.1.0';
+const RELEASE_VERSION = '9.1.0';
+const STABLE_VERSION = '9.1.1';
+const DEV_VERSION = '9.2.0';
 
 const bucket = 'downloads';
 const downloadUrl = 'downloads.lms-community.org';

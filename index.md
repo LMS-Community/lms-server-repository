@@ -15,9 +15,9 @@ platforms:
    src: Unix Tarball (i386, x86_64, i386 FreeBSD, ARM)
    encore: Musical Fidelity
    nocpan: Unix Tarball - No CPAN Libraries
-latest: 9.0.3
-stable: 9.0.4
-dev: 9.1.0
+latest: 9.1.0
+stable: 9.1.1
+dev: 9.2.0
 ---
 
 # {{ site.title }}
