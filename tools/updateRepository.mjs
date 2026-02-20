@@ -5,7 +5,7 @@ import { S3Client, DeleteObjectsCommand, ListObjectsV2Command, GetObjectCommand 
 import jstoxml from 'jstoxml';
 import { XMLParser } from 'fast-xml-parser';
 
-const RELEASE_REVISION = 1759466965;
+const RELEASE_REVISION = 1771315634;
 const RELEASE_VERSION = '9.1.0';
 const STABLE_VERSION = '9.1.1';
 const DEV_VERSION = '9.2.0';
